@@ -14,6 +14,18 @@ colunas_relevantes = [
 
 df = df[colunas_relevantes]
 
+# Corrige inconsistência de capitalização em event_type (ex: "online" para "Online" e "lan" para "LAN")
+def normalizar_event_type(valor):
+    valor_limpo = valor.strip().title()
+    if valor_limpo == "Lan":
+        return "LAN"
+    return valor_limpo
+
+df["event_type"] = df["event_type"].apply(normalizar_event_type)
+
 print("Número de linhas:", len(df))
 print("Número de colunas:", len(df.columns))
 print(df.head())
+
+# Verifica os valores únicos de event_type (deve mostrar somente "Online" e "LAN")
+print(df["event_type"].value_counts())
