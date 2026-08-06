@@ -28,13 +28,15 @@ biblioteca de funções estatísticas implementada do zero.
 ## Fonte dos dados
 
 **Dataset:** CS2 HLTV Professional Match Statistics Dataset
-**Autor original:** griffindesroches (Kaggle)
+
+**Autor:** griffindesroches (Kaggle)
+
 **URL:** https://www.kaggle.com/datasets/griffindesroches/cs2-hltv-professional-match-statistics-dataset
 
 7.033 partidas profissionais de CS2 (maio/2024 a outubro/2025), 140 colunas
 originais no arquivo bruto.
 
-## Módulo 0 — Preparação dos Dados (em andamento)
+## Módulo 0 — Preparação dos Dados (completo)
 
 ### Seleção de colunas
 
@@ -65,6 +67,11 @@ espaços em branco e padroniza a capitalização, preservando "LAN"
 do Python modificaria para "Lan"). Resultado esperado: apenas 2 categorias
 (Online, LAN).
 
+**Coluna `decider_map`:** identificou-se 63 linhas sem valor
+registrado — partidas sem um mapa decisivo definido nos dados originais.
+Essas linhas foram removidas via `dropna()` resultando em 6.970 partidas
+no dataset final.
+
 ## Como executar o projeto
 
 ### Pré-requisitos
@@ -87,9 +94,12 @@ do Python modificaria para "Lan"). Resultado esperado: apenas 2 categorias
 
        pip install pandas
 
-4. Rode o script de preparação dos dados:
+4. Execute o script de preparação dos dados:
 
        python src/prepare_data.py
+
+O script gera `data/processed/cs2_matches_clean.csv`, o dataset limpo
+usado pelo restante do projeto.
 
 **Nota:** o dataset bruto (`data/raw/cs2_newestcombinedmatches.csv`) não é
 versionado no Git (arquivo grande). Baixe do Kaggle (link acima) e coloque
@@ -97,7 +107,7 @@ manualmente em `data/raw/` antes de executar o script.
 
 ## Status do projeto
 
-- [x] Módulo 0 — Dados Reais (em andamento: seleção de colunas e limpeza)
+- [x] Módulo 0 — Dados Reais (completo: seleção de colunas, limpeza e dataset processado salvo)
 - [ ] Módulo 1 — Núcleo Estatístico Próprio
 - [ ] Módulo 2 — Estatística Descritiva Interativa
 - [ ] Módulo 3 — Probabilidade e Simulação

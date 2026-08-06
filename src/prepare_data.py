@@ -29,3 +29,11 @@ print(df.head())
 
 # Verifica os valores únicos de event_type (deve mostrar somente "Online" e "LAN")
 print(df["event_type"].value_counts())
+
+# Verifica os valores vazios de decider_map e retorna a soma destes
+print(df["decider_map"].isna().sum())
+
+df = df.dropna(subset=["decider_map"])
+print("Número de linhas após remover decider_map vazio:", len(df))
+
+df.to_csv("data/processed/cs2_matches_clean.csv", index=False)
