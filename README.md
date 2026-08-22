@@ -1,6 +1,6 @@
 # Laboratório Estatístico Interativo — CS2 (Counter-Strike 2)
 
-Trabalho de Sistematização da disciplina Matemática e Estatística para Computação.
+Sistematização da disciplina Matemática e Estatística para Computação.
 
 Este projeto implementa um laboratório estatístico interativo, explorando um
 dataset real de partidas profissionais de CS2 (Counter-Strike 2) com uma
@@ -108,7 +108,7 @@ manualmente em `data/raw/` antes de executar o script.
 ## Status do projeto
 
 - [x] Módulo 0 — Dados Reais (completo: seleção de colunas, limpeza e dataset processado salvo)
-- [ ] Módulo 1 — Núcleo Estatístico Próprio
+- [x] Módulo 1 — Núcleo Estatístico Próprio
 - [ ] Módulo 2 — Estatística Descritiva Interativa
 - [ ] Módulo 3 — Probabilidade e Simulação
 - [ ] Módulo 4 — Distribuições Teóricas
