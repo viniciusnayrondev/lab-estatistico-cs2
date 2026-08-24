@@ -51,9 +51,6 @@ def variancia(dados, amostral=True):
 def desvio_padrao(dados, amostral=True):
     return variancia(dados, amostral) ** 0.5
 
-def coeficiente_variacao(dados, amostral=True):
-    return (desvio_padrao(dados, amostral) / media(dados)) * 100
-
 def percentil(dados, p):
     dados_ordenados = sorted(dados)
     n = len(dados_ordenados)
@@ -74,6 +71,9 @@ def quartis(dados):
     q2 = percentil(dados, 50)
     q3 = percentil(dados, 75)
     return {"Q1": q1, "Q2": q2, "Q3": q3}
+
+def coeficiente_variacao(dados):
+    return (desvio_padrao(dados) / media(dados)) * 100
 
 def covariancia(dados_x, dados_y):
     media_x = media(dados_x) # x̄
@@ -119,15 +119,14 @@ print("Variância (populacional):", variancia(numeros_variancia, amostral=False)
 print("Desvio padrão (amostral):", desvio_padrao(numeros_variancia))
 print("Desvio padrão (populacional):", desvio_padrao(numeros_variancia, amostral=False))
 
-print("Coeficiente de variação (amostral):", coeficiente_variacao(numeros_variancia))
-print("Coeficiente de variação (populacional):", coeficiente_variacao(numeros_variancia, amostral=False))
-
 numeros_percentil = [10, 20, 30, 40, 50]
 print("Percentil 25:", percentil(numeros_percentil, 25))
 print("Percentil 10:", percentil(numeros_percentil, 10))
 
 resultado_quartis = quartis(numeros_percentil)
 print("Quartis:", resultado_quartis)
+
+print("Coeficiente de variação:", coeficiente_variacao(numeros_variancia))
 
 dados_x = [1, 2, 3, 4, 5]
 dados_y = [2, 4, 6, 8, 10]

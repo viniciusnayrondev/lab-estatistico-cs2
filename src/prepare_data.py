@@ -36,4 +36,9 @@ print(df["decider_map"].isna().sum())
 df = df.dropna(subset=["decider_map"])
 print("Número de linhas após remover decider_map vazio:", len(df))
 
+# Remove linha(s) com valores ausentes nas métricas do time 2 (Rating, ADR, KAST)
+# Identificado: partida hltv_match_2377790, dados incompletos na fonte original
+df = df.dropna(subset=["team2_avg_RATING", "team2_avg_ADR", "team2_avg_KAST"])
+print("Número de linhas após remover valores ausentes do time 2:", len(df))
+
 df.to_csv("data/processed/cs2_matches_clean.csv", index=False)

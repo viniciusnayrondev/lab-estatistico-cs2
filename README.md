@@ -9,19 +9,22 @@ biblioteca de funções estatísticas implementada do zero.
 ## Stack Utilizada
 
 - Python
-- Streamlit (interface interativa) — a ser implementado
+- Streamlit (interface interativa)
+- matplotlib (visualização de dados)
 - pandas / numpy / scipy (manipulação e validação de dados)
 - pytest (testes automatizados) — a ser implementado
 
 ## Estrutura do projeto
 
     lab-estatistico-cs2/
-    ├── app/                  # Aplicação Streamlit (ainda não iniciada)
+    ├── app/
+    │   └── app.py             # Módulo 2: aplicação Streamlit
     ├── data/
-    │   ├── processed/         # Dataset limpo (ainda não gerado)
+    │   ├── processed/         # Dataset limpo (gerado por prepare_data.py)
     │   └── raw/               # Dataset original (não versionado no Git)
     ├── src/
-    │   └── prepare_data.py    # Módulo 0: leitura e limpeza dos dados
+    │   ├── prepare_data.py    # Módulo 0: leitura e limpeza dos dados
+    │   └── minhastats.py      # Módulo 1: biblioteca estatística própria
     ├── tests/                 # Testes automatizados (ainda não iniciados)
     └── .gitignore
 
@@ -72,6 +75,33 @@ registrado — partidas sem um mapa decisivo definido nos dados originais.
 Essas linhas foram removidas via `dropna()` resultando em 6.970 partidas
 no dataset final.
 
+**Colunas `team2_avg_RATING`, `team2_avg_ADR`, `team2_avg_KAST`:** identificada
+1 linha (partida `hltv_match_2377790`) com valores ausentes simultaneamente
+nas três colunas, causando ausência em `rating_diff` (calculado a
+partir de `team2_avg_RATING`). A linha foi removida por `dropna()`,
+resultando em 6.969 partidas no dataset final (de 6.970 após etapa
+anterior).
+
+## Módulo 1 — Núcleo Estatístico Próprio (completo)
+
+Biblioteca `src/minhastats.py`, implementada do zero (sem uso de funções
+prontas de estatística do pandas/numpy/scipy), contendo:
+
+- Medidas de tendência central: `media()`, `mediana()`, `moda()`
+- Medidas de dispersão: `amplitude()`, `variancia()` e `desvio_padrao()`
+  (amostral e populacional), `coeficiente_variacao()`
+- Posição: `percentil()` e `quartis()` (Q1, Q2, Q3)
+- Relação entre variáveis: `covariancia()` e `correlacao_pearson()`
+
+Cada função foi validada com conjuntos de dados de exemplo.
+
+## Módulo 2 — Estatística Descritiva Interativa (em andamento)
+
+Aplicação Streamlit (`app/app.py`) que permite ao usuário escolher uma
+variável numérica do dataset e visualizar suas medidas estatísticas
+(calculadas pela biblioteca própria `minhastats.py`), incluindo média,
+mediana, desvio padrão e variância.
+
 ## Como executar o projeto
 
 ### Pré-requisitos
@@ -92,7 +122,7 @@ no dataset final.
 
 3. Instale as dependências:
 
-       pip install pandas
+       pip install pandas streamlit matplotlib
 
 4. Execute o script de preparação dos dados:
 
@@ -100,6 +130,10 @@ no dataset final.
 
 O script gera `data/processed/cs2_matches_clean.csv`, o dataset limpo
 usado pelo restante do projeto.
+
+5. Execute a aplicação Streamlit:
+
+       streamlit run app/app.py
 
 **Nota:** o dataset bruto (`data/raw/cs2_newestcombinedmatches.csv`) não é
 versionado no Git (arquivo grande). Baixe do Kaggle (link acima) e coloque
