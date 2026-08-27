@@ -37,7 +37,8 @@ biblioteca de funções estatísticas implementada do zero.
 **URL:** https://www.kaggle.com/datasets/griffindesroches/cs2-hltv-professional-match-statistics-dataset
 
 7.033 partidas profissionais de CS2 (maio/2024 a outubro/2025), 140 colunas
-originais no arquivo bruto.
+originais no arquivo bruto (reduzido a 6.969 partidas e 19 colunas após a
+limpeza descrita no Módulo 0).
 
 ## Módulo 0 — Preparação dos Dados (completo)
 
@@ -95,12 +96,37 @@ prontas de estatística do pandas/numpy/scipy), contendo:
 
 Cada função foi validada com conjuntos de dados de exemplo.
 
-## Módulo 2 — Estatística Descritiva Interativa (em andamento)
+## Módulo 2 — Estatística Descritiva Interativa (completo)
 
-Aplicação Streamlit (`app/app.py`) que permite ao usuário escolher uma
-variável numérica do dataset e visualizar suas medidas estatísticas
-(calculadas pela biblioteca própria `minhastats.py`), incluindo média,
-mediana, desvio padrão e variância.
+Aplicação Streamlit (`app/app.py`) que permite ao usuário escolher o tipo
+de variável (numérica ou categórica) e, em seguida, a variável específica
+a ser analisada dentro do dataset.
+
+### Para variáveis numéricas
+
+- **Tabela de frequências**: dados agrupados em 8 classes (faixas de
+  valores), calculadas a partir da amplitude dos dados
+- **Medidas de tendência central**: média, mediana e moda
+- **Medidas de dispersão**: amplitude, variância, desvio padrão e
+  coeficiente de variação
+- **Histograma**: distribuição visual dos dados por classe
+- **Boxplot**: visualização dos quartis e possíveis valores extremos
+- **Detecção de outliers**: aplicação da regra do IQR
+  (limites em Q1 − 1.5 × IQR e Q3 + 1.5 × IQR)
+- **Interpretação automática**: identifica a assimetria da distribuição
+  (comparando média e mediana) e comenta a presença de outliers
+
+### Para variáveis categóricas
+
+- **Tabela de frequências**: contagem de ocorrências de cada categoria
+  (via `.value_counts()`)
+- **Gráfico de barras**: frequência de cada categoria, com rotação dos
+  rótulos do eixo X quando necessário (ex.: nomes de mapas em `decider_map`)
+
+### Observação
+
+Todas as medidas estatísticas exibidas são calculadas pela biblioteca
+própria `minhastats.py` (Módulo 1).
 
 ## Como executar o projeto
 
@@ -143,7 +169,7 @@ manualmente em `data/raw/` antes de executar o script.
 
 - [x] Módulo 0 — Dados Reais (completo: seleção de colunas, limpeza e dataset processado salvo)
 - [x] Módulo 1 — Núcleo Estatístico Próprio
-- [ ] Módulo 2 — Estatística Descritiva Interativa
+- [x] Módulo 2 — Estatística Descritiva Interativa
 - [ ] Módulo 3 — Probabilidade e Simulação
 - [ ] Módulo 4 — Distribuições Teóricas
 - [ ] Módulo 5 — Correlação e Regressão Linear
