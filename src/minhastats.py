@@ -93,43 +93,44 @@ def correlacao_pearson(dados_x, dados_y):
     desvio_y = desvio_padrao(dados_y)
     return cov / (desvio_x * desvio_y)
 
-numeros = [2, 4, 6, 8, 10]
-resultado = media(numeros)
-print("Média:", resultado)
+if __name__ == "__main__":
+    numeros = [2, 4, 6, 8, 10]
+    resultado = media(numeros)
+    print("Média:", resultado)
 
-numeros_impar = [7, 2, 9, 4, 5]
-print("Mediana (ímpar):", mediana(numeros_impar))
+    numeros_impar = [7, 2, 9, 4, 5]
+    print("Mediana (ímpar):", mediana(numeros_impar))
 
-numeros_par = [1, 3, 5, 7]
-print("Mediana (par):", mediana(numeros_par))
+    numeros_par = [1, 3, 5, 7]
+    print("Mediana (par):", mediana(numeros_par))
 
-numeros_moda = [4, 8, 15, 4, 4, 8]
-print("Moda:", moda(numeros_moda))
+    numeros_moda = [4, 8, 15, 4, 4, 8]
+    print("Moda:", moda(numeros_moda))
 
-numeros_moda_empate = [1, 1, 2, 2, 3]
-print("Moda (empate):", moda(numeros_moda_empate))
+    numeros_moda_empate = [1, 1, 2, 2, 3]
+    print("Moda (empate):", moda(numeros_moda_empate))
 
-numeros_amplitude = [4, 8, 15, 16, 23, 42]
-print("Amplitude:", amplitude(numeros_amplitude))
+    numeros_amplitude = [4, 8, 15, 16, 23, 42]
+    print("Amplitude:", amplitude(numeros_amplitude))
 
-numeros_variancia = [2, 4, 6, 8, 10]
-print("Variância (amostral):", variancia(numeros_variancia))
-print("Variância (populacional):", variancia(numeros_variancia, amostral=False))
+    numeros_variancia = [2, 4, 6, 8, 10]
+    print("Variância (amostral):", variancia(numeros_variancia))
+    print("Variância (populacional):", variancia(numeros_variancia, amostral=False))
 
-print("Desvio padrão (amostral):", desvio_padrao(numeros_variancia))
-print("Desvio padrão (populacional):", desvio_padrao(numeros_variancia, amostral=False))
+    print("Desvio padrão (amostral):", desvio_padrao(numeros_variancia))
+    print("Desvio padrão (populacional):", desvio_padrao(numeros_variancia, amostral=False))
 
-numeros_percentil = [10, 20, 30, 40, 50]
-print("Percentil 25:", percentil(numeros_percentil, 25))
-print("Percentil 10:", percentil(numeros_percentil, 10))
+    numeros_percentil = [10, 20, 30, 40, 50]
+    print("Percentil 25:", percentil(numeros_percentil, 25))
+    print("Percentil 10:", percentil(numeros_percentil, 10))
 
-resultado_quartis = quartis(numeros_percentil)
-print("Quartis:", resultado_quartis)
+    resultado_quartis = quartis(numeros_percentil)
+    print("Quartis:", resultado_quartis)
 
-print("Coeficiente de variação:", coeficiente_variacao(numeros_variancia))
+    print("Coeficiente de variação:", coeficiente_variacao(numeros_variancia))
 
-dados_x = [1, 2, 3, 4, 5]
-dados_y = [2, 4, 6, 8, 10]
-print("Covariância:", covariancia(dados_x, dados_y))
+    dados_x = [1, 2, 3, 4, 5]
+    dados_y = [2, 4, 6, 8, 10]
+    print("Covariância:", covariancia(dados_x, dados_y))
 
-print("Correlação de Pearson:", correlacao_pearson(dados_x, dados_y))
+    print("Correlação de Pearson:", correlacao_pearson(dados_x, dados_y))

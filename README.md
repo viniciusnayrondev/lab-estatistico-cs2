@@ -96,6 +96,12 @@ prontas de estatística do pandas/numpy/scipy), contendo:
 
 Cada função foi validada com conjuntos de dados de exemplo.
 
+Os testes de validação ficam protegidos por
+`if __name__ == "__main__":` garantindo que só executem quando o arquivo é
+executado diretamente (`python src/minhastats.py`) e não quando é importado
+por outro módulo (como `app/app.py`) — evitando poluir o log de execução da
+aplicação Streamlit com prints de teste irrelevantes.
+
 ## Módulo 2 — Estatística Descritiva Interativa (completo)
 
 Aplicação Streamlit (`app/app.py`) que permite ao usuário escolher o tipo
