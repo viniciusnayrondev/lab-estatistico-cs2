@@ -134,6 +134,27 @@ a ser analisada dentro do dataset.
 Todas as medidas estatísticas exibidas são calculadas pela biblioteca
 própria `minhastats.py` (Módulo 1).
 
+## Módulo 3 — Probabilidade e Simulação (completo)
+
+Dois experimentos de simulação de Monte Carlo incluídos na aplicação
+Streamlit com parâmetros controláveis pelo usuário (sliders):
+
+### Lei dos Grandes Números
+
+Sorteios repetidos (com reposição) do histórico real de vencedores
+(`winner`) do dataset, calculando a frequência relativa acumulada de
+vitórias de 'team1' a cada sorteio. Demonstra a convergência dessa
+frequência para a proporção real observada no dataset completo, conforme
+o número de sorteios aumenta.
+
+### Teorema Central do Limite
+
+Sorteio repetido de amostras (com reposição) de uma variável numérica
+selecionada pelo usuário, calculando a média de cada amostra. A distribuição
+dessas médias amostrais (visualizada em histograma) se aproxima de uma
+distribuição Normal conforme o tamanho de cada amostra aumenta — mesmo
+quando a variável original não segue uma distribuição normal.
+
 ## Como executar o projeto
 
 ### Pré-requisitos
@@ -176,7 +197,7 @@ manualmente em `data/raw/` antes de executar o script.
 - [x] Módulo 0 — Dados Reais (completo: seleção de colunas, limpeza e dataset processado salvo)
 - [x] Módulo 1 — Núcleo Estatístico Próprio
 - [x] Módulo 2 — Estatística Descritiva Interativa
-- [ ] Módulo 3 — Probabilidade e Simulação
+- [x] Módulo 3 — Probabilidade e Simulação
 - [ ] Módulo 4 — Distribuições Teóricas
 - [ ] Módulo 5 — Correlação e Regressão Linear
 - [ ] Módulo 6 — Relatório de Descobertas
