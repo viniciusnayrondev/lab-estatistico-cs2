@@ -18,7 +18,7 @@ biblioteca de funções estatísticas implementada do zero.
 
     lab-estatistico-cs2/
     ├── app/
-    │   └── app.py             # Módulo 2: aplicação Streamlit
+    │   └── app.py             # Aplicação Streamlit (Módulos 2, 3 e 4)
     ├── data/
     │   ├── processed/         # Dataset limpo (gerado por prepare_data.py)
     │   └── raw/               # Dataset original (não versionado no Git)
@@ -155,6 +155,35 @@ dessas médias amostrais (visualizada em histograma) se aproxima de uma
 distribuição Normal conforme o tamanho de cada amostra aumenta — mesmo
 quando a variável original não segue uma distribuição normal.
 
+## Módulo 4 — Distribuições Teóricas (completo)
+
+Aplicação Streamlit sobrepõe, ao histograma de uma variável escolhida, a
+curva de uma distribuição teórica candidata, com parâmetros estimados a
+partir dos dados reais (usando a biblioteca própria `minhastats.py`).
+
+### Distribuição Normal
+
+Aplicada a qualquer variável numérica selecionável pelo usuário. Parâmetros
+estimados: média (`ms.media()`) e desvio padrão (`ms.desvio_padrao()`). A
+curva teórica é gerada com `scipy.stats.norm.pdf()`.
+
+### Distribuição de Poisson
+
+Aplicada à variável `score_team1`. Parâmetro estimado: λ (lambda), igual à
+média dos dados. A curva teórica é gerada com `scipy.stats.poisson.pmf()`.
+
+**Descoberta relevante:** o ajuste visual à Poisson é fraco para essa
+variável. Observa-se um pico isolado em 13 rounds, não previsto pela
+distribuição teórica — isso ocorre porque, no CS2, um mapa é vencido
+diretamente ao atingir 13 rounds (formato MR12), sem necessidade de
+prorrogação. Picos adicionais em 16, 19 e 22 rounds correspondem a vitórias
+decididas em overtime (incrementos de 3 rounds por prorrogação). Essa
+estrutura de regras cria um teto (13 rounds) e saltos discretos
+que a distribuição de Poisson — pensada para contagens de eventos livres e
+ilimitados — não consegue capturar. A discrepância entre dados reais e
+curva teórica revela, portanto, uma característica estrutural real do 
+CS2, não um problema de qualidade dos dados.
+
 ## Como executar o projeto
 
 ### Pré-requisitos
@@ -175,7 +204,7 @@ quando a variável original não segue uma distribuição normal.
 
 3. Instale as dependências:
 
-       pip install pandas streamlit matplotlib
+       pip install pandas streamlit matplotlib scipy
 
 4. Execute o script de preparação dos dados:
 
@@ -198,6 +227,6 @@ manualmente em `data/raw/` antes de executar o script.
 - [x] Módulo 1 — Núcleo Estatístico Próprio
 - [x] Módulo 2 — Estatística Descritiva Interativa
 - [x] Módulo 3 — Probabilidade e Simulação
-- [ ] Módulo 4 — Distribuições Teóricas
+- [x] Módulo 4 — Distribuições Teóricas
 - [ ] Módulo 5 — Correlação e Regressão Linear
 - [ ] Módulo 6 — Relatório de Descobertas
