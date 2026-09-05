@@ -93,6 +93,47 @@ def correlacao_pearson(dados_x, dados_y):
     desvio_y = desvio_padrao(dados_y)
     return cov / (desvio_x * desvio_y)
 
+def regressao_linear(dados_x, dados_y):
+    beta1 = covariancia(dados_x, dados_y) / variancia(dados_x)
+    beta0 = media(dados_y) - beta1 * media(dados_x)
+    return beta0, beta1
+
+# Cálculo do R² (coeficiente de determinação)
+def r_quadrado(dados_x, dados_y):
+    beta0, beta1 = regressao_linear(dados_x, dados_y)
+    media_y = media(dados_y)
+
+    soma_residuos = 0
+    soma_total = 0
+
+    for i in range(len(dados_x)):
+        y_previsto = beta0 + beta1 * dados_x[i]
+
+        soma_residuos = soma_residuos + (dados_y[i] - y_previsto) ** 2
+        soma_total = soma_total + (dados_y[i] - media_y) ** 2
+
+    if soma_total == 0:
+        return None
+
+    r2 = 1 - (soma_residuos / soma_total)
+
+    return r2
+
+def interpretar_beta0(beta0, nome_x, nome_y):
+    return f"Quando {nome_x} é 0, o valor estimado de {nome_y} é {beta0:.4f}. Essa interpretação só possui significado prático se X = 0 fizer sentido no contexto da variável."
+
+# Tratamento dos casos: β₁ > 0  → relação linear positiva; β₁ < 0  → relação linear negativa; β₁ = 0  → reta horizontal
+def interpretar_beta1(beta1, nome_x, nome_y):
+    if beta1 > 0:
+        return f"A cada aumento unitário em {nome_x}, {nome_y} aumenta, em média, {beta1:.4f} unidade(s)."
+    elif beta1 < 0:
+        return f"A cada aumento unitário em {nome_x}, {nome_y} diminui, em média, {abs(beta1):.4f} unidade(s)."
+    else:
+        return f"Para cada aumento unitário em {nome_x}, não há alteração estimada em {nome_y}."
+
+def alerta_causalidade():
+    return "Atenção: correlação e regressão linear indicam associação entre as variáveis, mas não comprovam relação de causa e efeito."
+
 if __name__ == "__main__":
     numeros = [2, 4, 6, 8, 10]
     resultado = media(numeros)
@@ -134,3 +175,11 @@ if __name__ == "__main__":
     print("Covariância:", covariancia(dados_x, dados_y))
 
     print("Correlação de Pearson:", correlacao_pearson(dados_x, dados_y))
+
+    dados_x_regressao = [1, 2, 3, 4, 5]
+    dados_y_regressao = [2, 4, 6, 8, 10]
+    beta0_teste, beta1_teste = regressao_linear(dados_x_regressao, dados_y_regressao)
+    print("Regressão linear - Beta0 (intercepto):", beta0_teste)
+    print("Regressão linear - Beta1 (inclinação):", beta1_teste)
+
+    print("R²:", r_quadrado(dados_x, dados_y))

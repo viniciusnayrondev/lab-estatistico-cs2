@@ -184,6 +184,28 @@ ilimitados — não consegue capturar. A discrepância entre dados reais e
 curva teórica revela, portanto, uma característica estrutural real do 
 CS2, não um problema de qualidade dos dados.
 
+## Módulo 5 — Correlação e Regressão Linear (completo)
+
+Aplicação Streamlit permite ao usuário escolher duas variáveis numéricas
+(X e Y) e exibe:
+
+- **Coeficiente de correlação de Pearson** (biblioteca própria)
+- **Regressão linear simples**: coeficientes β₀ (intercepto) e β₁
+  (inclinação), calculados pelo método dos mínimos quadrados,
+  implementado do zero em `minhastats.py` (`regressao_linear()`)
+- **R² (coeficiente de determinação)**, calculado pela definição formal
+  (1 − soma dos resíduos / soma total), com proteção contra divisão por
+  zero quando a variável Y tem variância nula
+- **Equação da reta**, formatada com o sinal correto do coeficiente
+  angular
+- **Diagrama de dispersão** com a reta de regressão sobreposta
+- **Predição interativa**: o usuário digita um valor de X e a aplicação
+  calcula o Ŷ previsto
+- **Interpretação textual** dos coeficientes β₀ e β₁, gerada por funções
+  próprias (`interpretar_beta0()`, `interpretar_beta1()`)
+- **Alerta explícito**: correlação e regressão não comprovam causalidade
+  (`alerta_causalidade()`)
+
 ## Como executar o projeto
 
 ### Pré-requisitos
@@ -228,5 +250,5 @@ manualmente em `data/raw/` antes de executar o script.
 - [x] Módulo 2 — Estatística Descritiva Interativa
 - [x] Módulo 3 — Probabilidade e Simulação
 - [x] Módulo 4 — Distribuições Teóricas
-- [ ] Módulo 5 — Correlação e Regressão Linear
+- [x] Módulo 5 — Correlação e Regressão Linear
 - [ ] Módulo 6 — Relatório de Descobertas
