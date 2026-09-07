@@ -206,6 +206,14 @@ Aplicação Streamlit permite ao usuário escolher duas variáveis numéricas
 - **Alerta explícito**: correlação e regressão não comprovam causalidade
   (`alerta_causalidade()`)
 
+## Módulo 6 — Relatório de Descobertas (completo)
+
+As três descobertas estatísticas mais relevantes do projeto estão
+documentadas em [`RELATORIO.md`](RELATORIO.md), cobrindo: a baixa
+dispersão do Rating profissional, a estrutura de regras do CS2 revelada
+pelo ajuste de Poisson ao placar, e a forte relação linear entre Rating
+e ADR.
+
 ## Como executar o projeto
 
 ### Pré-requisitos
@@ -251,4 +259,4 @@ manualmente em `data/raw/` antes de executar o script.
 - [x] Módulo 3 — Probabilidade e Simulação
 - [x] Módulo 4 — Distribuições Teóricas
 - [x] Módulo 5 — Correlação e Regressão Linear
-- [ ] Módulo 6 — Relatório de Descobertas
+- [x] Módulo 6 — Relatório de Descobertas
