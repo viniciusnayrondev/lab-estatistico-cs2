@@ -12,7 +12,7 @@ biblioteca de funções estatísticas implementada do zero.
 - Streamlit (interface interativa)
 - matplotlib (visualização de dados)
 - pandas / numpy / scipy (manipulação e validação de dados)
-- pytest (testes automatizados) — a ser implementado
+- pytest (testes automatizados)
 
 ## Estrutura do projeto
 
@@ -25,7 +25,8 @@ biblioteca de funções estatísticas implementada do zero.
     ├── src/
     │   ├── prepare_data.py    # Módulo 0: leitura e limpeza dos dados
     │   └── minhastats.py      # Módulo 1: biblioteca estatística própria
-    ├── tests/                 # Testes automatizados (ainda não iniciados)
+    ├── tests/
+    │   └── test_minhastats.py # Testes automatizados
     └── .gitignore
 
 ## Fonte dos dados
@@ -214,6 +215,20 @@ dispersão do Rating profissional, a estrutura de regras do CS2 revelada
 pelo ajuste de Poisson ao placar, e a forte relação linear entre Rating
 e ADR.
 
+## Testes Automatizados
+
+Arquivo `tests/test_minhastats.py`: 16 testes (pytest), comparando cada
+função da biblioteca própria com a referência do NumPy/SciPy.
+
+**Tolerância numérica documentada:** todas as comparações usam
+`pytest.approx(..., abs=0.0001)`, absorvendo pequenas imprecisões de
+ponto flutuante inerentes a cálculos com números decimais, sem mascarar
+erros reais de implementação.
+
+Para rodar os testes:
+
+    python -m pytest tests/test_minhastats.py -v
+
 ## Como executar o projeto
 
 ### Pré-requisitos
@@ -234,7 +249,7 @@ e ADR.
 
 3. Instale as dependências:
 
-       pip install pandas streamlit matplotlib scipy
+       pip install -r requirements.txt
 
 4. Execute o script de preparação dos dados:
 
