@@ -17,8 +17,16 @@ biblioteca de funções estatísticas implementada do zero.
 ## Estrutura do projeto
 
     lab-estatistico-cs2/
+    ├── pages.py                # Ponto de entrada (st.navigation)
+    ├── secoes/
+    │   ├── utils.py             # Carregamento de dados compartilhado (cache)
+    │   ├── inicio.py
+    │   ├── estatistica_descritiva.py  # Módulo 2
+    │   ├── probabilidade.py           # Módulo 3
+    │   ├── distribuicoes.py           # Módulo 4
+    │   └── regressao.py               # Módulo 5
     ├── app/
-    │   └── app.py             # Aplicação Streamlit (Módulos 2, 3 e 4)
+    │   └── app.py              # Versão original de referência (substituída por pages.py + secoes/)
     ├── data/
     │   ├── processed/         # Dataset limpo (gerado por prepare_data.py)
     │   └── raw/               # Dataset original (não versionado no Git)
@@ -100,12 +108,12 @@ Cada função foi validada com conjuntos de dados de exemplo.
 Os testes de validação ficam protegidos por
 `if __name__ == "__main__":` garantindo que só executem quando o arquivo é
 executado diretamente (`python src/minhastats.py`) e não quando é importado
-por outro módulo (como `app/app.py`) — evitando poluir o log de execução da
+por outro módulo (como os arquivos em `secoes/`) — evitando poluir o log de execução da
 aplicação Streamlit com prints de teste irrelevantes.
 
 ## Módulo 2 — Estatística Descritiva Interativa (completo)
 
-Aplicação Streamlit (`app/app.py`) que permite ao usuário escolher o tipo
+Aplicação Streamlit (`secoes/estatistica_descritiva.py`) que permite ao usuário escolher o tipo
 de variável (numérica ou categórica) e, em seguida, a variável específica
 a ser analisada dentro do dataset.
 
@@ -138,7 +146,7 @@ própria `minhastats.py` (Módulo 1).
 ## Módulo 3 — Probabilidade e Simulação (completo)
 
 Dois experimentos de simulação de Monte Carlo incluídos na aplicação
-Streamlit com parâmetros controláveis pelo usuário (sliders):
+Streamlit (`secoes/probabilidade.py`) com parâmetros controláveis pelo usuário (sliders):
 
 ### Lei dos Grandes Números
 
@@ -158,7 +166,7 @@ quando a variável original não segue uma distribuição normal.
 
 ## Módulo 4 — Distribuições Teóricas (completo)
 
-Aplicação Streamlit sobrepõe, ao histograma de uma variável escolhida, a
+Aplicação Streamlit (`secoes/distribuicoes.py`) sobrepõe, ao histograma de uma variável escolhida, a
 curva de uma distribuição teórica candidata, com parâmetros estimados a
 partir dos dados reais (usando a biblioteca própria `minhastats.py`).
 
@@ -187,7 +195,7 @@ CS2, não um problema de qualidade dos dados.
 
 ## Módulo 5 — Correlação e Regressão Linear (completo)
 
-Aplicação Streamlit permite ao usuário escolher duas variáveis numéricas
+Aplicação Streamlit (`secoes/regressao.py`) permite ao usuário escolher duas variáveis numéricas
 (X e Y) e exibe:
 
 - **Coeficiente de correlação de Pearson** (biblioteca própria)
@@ -260,7 +268,12 @@ usado pelo restante do projeto.
 
 5. Execute a aplicação Streamlit:
 
-       streamlit run app/app.py
+       streamlit run pages.py
+
+**Nota:** `app/app.py` foi a implementação original de arquivo único dos
+Módulos 2 a 5. Ele foi preservado no repositório apenas como referência
+histórica do desenvolvimento; a aplicação ativa hoje é `pages.py`, que
+reorganiza a mesma lógica em páginas separadas dentro de `secoes/`.
 
 **Nota:** o dataset bruto (`data/raw/cs2_newestcombinedmatches.csv`) não é
 versionado no Git (arquivo grande). Baixe do Kaggle (link acima) e coloque
